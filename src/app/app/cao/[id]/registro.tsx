@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { CAMPOS, type CampoChave, type Presenca } from "@/lib/dominio";
 import { enviarFoto } from "@/lib/upload";
 import {
-  fazerCheckout,
+  enviarBoletimAgora,
   reenviarBoletim,
   registrarFoto,
   removerFoto,
@@ -239,15 +239,20 @@ export function RegistroCao(props: Props) {
                   await salvarRecado(presenca.id, recado);
                   setRecadoSalvo(recado);
                 }
-                const r = await fazerCheckout(presenca.id);
+                const r = await enviarBoletimAgora(presenca.id);
                 if (r.status === "falhou") setAviso("O boletim não saiu. Confira o WhatsApp do tutor em Cães.");
                 router.refresh();
               })
             }
           >
-            {pendente ? "Enviando..." : `Saída de ${props.nomeCao} e enviar boletim`}
+            {pendente ? "Enviando..." : `Enviar boletim de ${props.nomeCao}`}
           </button>
         )}
+        <p className="text-center text-[12px] text-suave">
+          {jaSaiu
+            ? "O que você mudar aqui continua aparecendo no boletim, mesmo depois de enviado."
+            : "Ou deixe para o envio automático das 17h."}
+        </p>
       </section>
     </div>
   );

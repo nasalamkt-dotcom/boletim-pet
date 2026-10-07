@@ -114,7 +114,7 @@ export default async function Boletim({ params }: { params: Promise<{ token: str
           <Pata size={18} />
           {p.creches?.nome}
         </span>
-        <h1 className="font-display text-[36px] font-extrabold leading-none">O dia do {nome}</h1>
+        <h1 className="font-display text-[36px] font-extrabold leading-none">O dia de {nome}</h1>
         <p className="text-[15px] text-[#DDEFEC]">
           <span className="capitalize">{diaPorExtenso(p.dia)}</span>
           {p.chegada && ` · das ${hora(p.chegada, fuso)}`}

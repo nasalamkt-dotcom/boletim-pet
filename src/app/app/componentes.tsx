@@ -53,7 +53,7 @@ export function EnviarBoletins({ pendentes }: { pendentes: number }) {
         {pendente ? "Enviando..." : `Enviar ${pendentes} ${pendentes === 1 ? "boletim" : "boletins"} no WhatsApp`}
       </button>
       <p className="text-center text-[12px] text-suave" role="status">
-        {resultado ?? "Também saem sozinhos no fim do dia ou no checkout de cada cão."}
+        {resultado ?? "Também saem sozinhos às 17h, ou um a um pela tela de cada cão."}
       </p>
     </div>
   );

@@ -13,7 +13,7 @@ O dia de cada cão na creche, registrado em poucos toques pelo monitor e entregu
 - **Registro rápido**: alimentação, necessidades, atividade e humor em botões; fotos tiradas pelo celular (reduzidas antes do envio); recado para o tutor, com botão "Melhorar com IA".
 - **Foto da turma**: uma foto, vários cães marcados, e ela entra no boletim de cada um.
 - **Boletim público** em `/b/<token>`: página bonita no celular, com capa, rotina, recado, turma do dia, galeria e botão de compartilhar. Fotos ficam em bucket privado e são servidas por links temporários.
-- **Envio pelo WhatsApp**: no checkout de cada cão, pelo botão "Enviar boletins" ou automaticamente às 17h (horário de Recife).
+- **Envio pelo WhatsApp**: pelo botão "Enviar boletim" na tela de cada cão, por "Enviar boletins" na lista do dia ou automaticamente às 17h (horário de Recife).
 - **Modo simulado** (`WHATSAPP_MODE=mock`): nada sai de verdade, mas tudo fica registrado em **Envios**, com o link do boletim, para testar o fluxo completo antes da Meta aprovar a conta.
 - **Webhook** que atualiza o status (enviado, entregue, lido, falhou).
 - Cada creche só enxerga os próprios dados (regras de acesso no banco).
@@ -60,7 +60,7 @@ Abra o app, toque em **Cadastre aqui**, crie a creche com seu e-mail e senha, ca
 5. Envie para aprovação os modelos abaixo, na categoria **Utilidade**, idioma **Português (BR)**.
 
 **`boletim_pronto`**
-- Corpo: `Oi, {{1}}! O boletim de hoje do {{2}} está pronto, com fotos, rotina e um recado da equipe.`
+- Corpo: `Oi, {{1}}! O boletim de hoje de {{2}} está pronto, com fotos, rotina e um recado da equipe.`
 - Botão de link dinâmico "Ver boletim": `https://SEU-DOMINIO/b/{{1}}`
 - Exemplos para a Meta: `{{1}}` = Ana, `{{2}}` = Thor; sufixo do link = `exemplo123`.
 

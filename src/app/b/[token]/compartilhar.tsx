@@ -8,10 +8,10 @@ export function Compartilhar({ nome }: { nome: string }) {
 
   async function compartilhar() {
     const url = window.location.href;
-    const texto = `Olha como foi o dia do ${nome} na creche!`;
+    const texto = `Olha como foi o dia de ${nome} na creche!`;
     if (navigator.share) {
       try {
-        await navigator.share({ title: `O dia do ${nome}`, text: texto, url });
+        await navigator.share({ title: `O dia de ${nome}`, text: texto, url });
         return;
       } catch {
         // cancelado pelo usuário

@@ -111,9 +111,9 @@ export async function removerFoto(fotoId: string) {
   revalidatePath("/app");
 }
 
-export async function fazerCheckout(presencaId: string) {
-  const { ctx } = await minhaPresenca(presencaId);
-  await ctx.supabase.from("presencas").update({ saida: new Date().toISOString() }).eq("id", presencaId);
+/** Envia o boletim do cão agora, sem registrar saída (ele pode continuar na creche). */
+export async function enviarBoletimAgora(presencaId: string) {
+  await minhaPresenca(presencaId);
   const r = await enviarBoletim(presencaId);
   revalidatePath("/app");
   return r;
