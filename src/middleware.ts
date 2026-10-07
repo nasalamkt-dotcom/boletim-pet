@@ -44,10 +44,19 @@ export async function middleware(request: NextRequest) {
     return paraConfiguracao(request);
   }
 
-  const protegida = ["/app", "/comecar"].some((p) => request.nextUrl.pathname.startsWith(p));
+  const caminho = request.nextUrl.pathname;
+  const protegida = ["/app", "/comecar", "/nova-senha"].some((p) => caminho.startsWith(p));
   if (!user && protegida) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+  // Quem já está logado não precisa ver login nem cadastro
+  if (user && (caminho === "/login" || caminho === "/cadastro")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/app";
+    url.search = "";
     return NextResponse.redirect(url);
   }
 
@@ -56,5 +65,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   // Só as áreas com login; a página pública do boletim (/b) e as APIs ficam de fora.
-  matcher: ["/app/:path*", "/comecar", "/login", "/auth/:path*"],
+  // (/configuracao fica de fora de propósito, para não entrar em laço.)
+  matcher: ["/app/:path*", "/comecar", "/nova-senha", "/login", "/cadastro", "/esqueci", "/auth/:path*"],
 };

@@ -42,17 +42,29 @@ export default async function Hoje() {
   return (
     <main className="flex flex-1 flex-col">
       <header className="flex flex-col gap-1 px-5 pt-7 pb-4">
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-[13px] font-bold uppercase tracking-wide text-teal">{creche.nome}</span>
-          <nav className="flex gap-4 text-[14px] font-bold">
-            <Link href="/app/caes" className="text-teal">Cães</Link>
-            <Link href="/app/mensagens" className="text-teal">Envios</Link>
-          </nav>
-        </div>
+        <span className="text-[13px] font-bold uppercase tracking-wide text-teal">{creche.nome}</span>
         <h1 className="font-display text-[30px] font-extrabold leading-tight">
           {presentes.length === 1 ? "1 cão na creche" : `${presentes.length} cães na creche`}
         </h1>
-        <p className="text-[14px] capitalize text-suave">{diaPorExtenso(dia)} · olá, {membro.nome}</p>
+        <p className="text-[14px] text-suave">
+          <span className="capitalize">{diaPorExtenso(dia)}</span> · olá, {membro.nome}
+        </p>
+        <nav className="mt-3 flex flex-wrap gap-2" aria-label="Menu">
+          {[
+            { href: "/app/caes", rotulo: "Cães" },
+            { href: "/app/mensagens", rotulo: "Envios" },
+            ...(membro.papel === "admin" ? [{ href: "/app/equipe", rotulo: "Equipe" }] : []),
+            { href: "/app/conta", rotulo: "Conta" },
+          ].map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="flex min-h-[40px] items-center rounded-full border border-borda bg-white px-4 text-[14px] font-bold text-teal"
+            >
+              {l.rotulo}
+            </Link>
+          ))}
+        </nav>
       </header>
 
       {modoWhatsApp() === "mock" && (

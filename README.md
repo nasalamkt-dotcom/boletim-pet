@@ -6,7 +6,8 @@ O dia de cada cão na creche, registrado em poucos toques pelo monitor e entregu
 
 ## O que já funciona
 
-- **Login por link no e-mail** e configuração inicial da creche.
+- **Login com e-mail e senha**, cadastro da creche (o primeiro acesso vira administrador) e "Esqueci minha senha".
+- **Equipe**: o administrador cadastra os colaboradores com e-mail e senha provisória; cada um troca a própria senha em **Conta**.
 - **Cadastro de cães e tutores** (irmãos podem compartilhar o mesmo tutor).
 - **Lista do dia**: check-in com um toque, progresso de registros e fotos de cada cão.
 - **Registro rápido**: alimentação, necessidades, atividade e humor em botões; fotos tiradas pelo celular (reduzidas antes do envio); recado para o tutor, com botão "Melhorar com IA".
@@ -48,7 +49,7 @@ npm run dev                  # http://localhost:3000
 
 ### 3. Primeiro acesso
 
-Abra o app, entre com seu e-mail, crie a creche, cadastre dois ou três cães com o **seu próprio WhatsApp** como tutor e faça um dia de teste: check-in, registros, fotos e envio. Em modo simulado, os boletins aparecem em **Envios**.
+Abra o app, toque em **Cadastre aqui**, crie a creche com seu e-mail e senha, cadastre dois ou três cães com o **seu próprio WhatsApp** como tutor e faça um dia de teste: check-in, registros, fotos e envio. Em modo simulado, os boletins aparecem em **Envios**.
 
 ## Ligar o WhatsApp de verdade (Meta)
 

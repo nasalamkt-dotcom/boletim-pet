@@ -1,6 +1,6 @@
 import { contexto } from "@/lib/sessao";
 import { Avatar, Voltar } from "@/components/ui";
-import { FormCao, BotaoAtivo, BotaoSair } from "./form";
+import { FormCao, BotaoAtivo } from "./form";
 
 export const dynamic = "force-dynamic";
 
@@ -65,10 +65,6 @@ export default async function Caes() {
           </div>
         ))}
       </section>
-
-      <div className="px-5">
-        <BotaoSair />
-      </div>
     </main>
   );
 }
