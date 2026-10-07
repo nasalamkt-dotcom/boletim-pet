@@ -1,8 +1,19 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { variaveisFaltando } from "@/lib/config";
+
+function paraConfiguracao(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  url.pathname = "/configuracao";
+  url.search = "";
+  return NextResponse.redirect(url);
+}
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
+
+  // Sem as variáveis do Supabase, mostra o que falta em vez de quebrar.
+  if (variaveisFaltando(false).length) return paraConfiguracao(request);
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -23,9 +34,15 @@ export async function middleware(request: NextRequest) {
     },
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user = null;
+  try {
+    ({
+      data: { user },
+    } = await supabase.auth.getUser());
+  } catch {
+    // URL ou chave inválida: o Supabase não respondeu.
+    return paraConfiguracao(request);
+  }
 
   const protegida = ["/app", "/comecar"].some((p) => request.nextUrl.pathname.startsWith(p));
   if (!user && protegida) {
